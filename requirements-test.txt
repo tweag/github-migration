@@ -1,0 +1,13 @@
+bandit==1.7.8
+black==24.4.1
+flake8-bugbear==24.4.21
+flake8-comprehensions==3.14.0
+flake8-print==5.0.0
+isort==5.13.2
+ipython==8.18.1
+mypy==1.9.0
+pdbpp==0.10.3
+types-click==7.1.8
+types-requests==2.31.0.20240406
+types-PyYAML==6.0.12.20240311
+flake8==7.0.0; python_version >= "3.8.1"
