@@ -1,0 +1,5 @@
+*.csv filter=lfs diff=lfs merge=lfs -text
+*.json filter=lfs diff=lfs merge=lfs -text
+# Thanks https://stackoverflow.com/a/62082917
+.markdownlint.json -filter=lfs -diff=lfs -merge=lfs -text
+data/migrations/*.txt filter=lfs diff=lfs merge=lfs -text

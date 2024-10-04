@@ -1,0 +1,38 @@
+#!/usr/bin/env bash
+# env.sample
+#
+# Copy this to .env and customize it with real access tokens.
+# 
+# Then source it before running commands in the scripts:
+#
+#    set -o allexport && source .env && set +o allexport
+#
+# The migration scripts need certain environment variables set per [github/gh-gei](https://github.com/github/gh-gei) for GitHub instructions, see:
+#   https://docs.github.com/en/migrations/using-github-enterprise-importer/migrating-repositories-with-github-enterprise-importer/migrating-repositories-from-github-enterprise-server-to-github-enterprise-cloud
+#
+# These rest of the scripts use the same conventions as [github/gh-gei](https://github.com/github/gh-gei) for GitHub tokens. These are:
+#
+#    GH_PAT         Personal access token for github.com (migration destination)
+#    GH_SOURCE_PAT  Personal access token for github.example.com (migration source) 
+#
+# These tokens must have the scopes that are defined in the `github/gh-gei` documentation, see:
+#   https://docs.github.com/en/migrations/using-github-enterprise-importer/preparing-to-migrate-with-github-enterprise-importer/managing-access-for-github-enterprise-importer#required-scopes-for-personal-access-tokens
+#
+# Since these GitHub tokens are *highly privileged* please set a short expiration on them (90 days or less)
+GH_PAT=redacted
+GH_SOURCE_PAT=redacted
+
+# Azure storage connection string, needed for gh-gei to store blobs for
+# github.com to retrieve during the import process.
+AZURE_STORAGE_CONNECTION_STRING='redacted'
+
+# You need a Sourcegraph token to pull data from Sourcegraph.
+SRC_ACCESS_TOKEN=
+
+# Buildkite token - needed to patch up Buildkite targets
+BUILDKITE_TOKEN=redacted
+
+# Vault token - needed to read and write webhook secrets
+# For testing, set this with scripts/getVaultToken.sh:
+#  export VAULT_TOKEN=$(scripts/getVaultToken.sh)
+#VAULT_TOKEN=redacted

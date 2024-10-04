@@ -1,0 +1,9 @@
+# cli
+IPy
+PyGithub
+hvac
+openpyxl
+pandas
+python_graphql_client
+pyyaml
+requests
