@@ -5,7 +5,7 @@
 
 This repository hosts scripts and data files related to migrating from GitHub Enterprise Server (GHES)
 to GitHub Enterprise Cloud (GHEC). This software should be useful as starting point when building a migration
-toolkit for a similar migration. Modus Create worked with Wayfair to release this software as Open Source pursuant to the 2024 GitHub Universe presentation [Complex migrations: Why failing forward helps push past resistance to change](https://reg.githubuniverse.com/flow/github/universe24/attendee-portal/page/sessioncatalog/session/1715190440825001r1em). You can read more about this migration in this [case study](https://moduscreate.com/case-study/wayfair/). 
+toolkit for a similar migration. Modus Create worked with Wayfair to release this software as Open Source as part of the 2024 GitHub Universe presentation [Complex migrations: Why failing forward helps push past resistance to change](https://reg.githubuniverse.com/flow/github/universe24/attendee-portal/page/sessioncatalog/session/1715190440825001r1em). Modus Create is the maintainer of this software going forward. You can read more about this migration in this [case study](https://moduscreate.com/case-study/wayfair/). 
 
 The main migration tool used
 for this is [gh-gei](https://github.com/github/gh-gei), and a secondary tool is a GitHub internal and
