@@ -4,7 +4,8 @@
 [![Code style: black](https://img.shields.io/badge/code%20style-black-black.svg)](https://github.com/psf/black)
 
 This repository hosts scripts and data files related to migrating from GitHub Enterprise Server (GHES)
-to GitHub Enterprise Cloud (GHEC).
+to GitHub Enterprise Cloud (GHEC). This software should be useful as starting point when building a migration
+toolkit for a similar migration. Modus Create worked with Wayfair to release this software as Open Source as part of the 2024 GitHub Universe presentation [Complex migrations: Why failing forward helps push past resistance to change](https://reg.githubuniverse.com/flow/github/universe24/attendee-portal/page/sessioncatalog/session/1715190440825001r1em). Modus Create is the maintainer of this software going forward. You can read more about this migration in this [case study](https://moduscreate.com/case-study/wayfair/). 
 
 The main migration tool used
 for this is [gh-gei](https://github.com/github/gh-gei), and a secondary tool is a GitHub internal and
@@ -70,6 +71,8 @@ This uses these tools:
 
 #### Buildkite VCS Fixup
 
+Some of these tools assume that [Buildkite](https://buildkite.com) is in use as a CI/CD system.
+
 If _all_ of the Buildkite VCS migrations fail during a migration run, you might not have an admin-level Buildkite 
 token. 
 
@@ -132,6 +135,10 @@ style guide and automatically fix violations when possible.
 
 ## Authors
 
-`github-migration` was written by `Uzoma Nwoko <uzoma.nwoko@wayfair.com>` and `Richard Bullington-McGuire <rbullingtonmcguire@wayfair.com>`.
+`github-migration` was written by `Uzoma Nwoko <uzoma.nwoko@moduscreate.com>` and `Richard Bullington-McGuire <richard@moduscreate.com>`.
 
 [1] https://docs.github.com/en/migrations/using-github-enterprise-importer/migrating-between-github-products/managing-access-for-a-migration-between-github-products#required-scopes-for-personal-access-tokens
+
+## License
+
+This project is [MIT licensed](LICENSE).
