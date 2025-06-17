@@ -38,7 +38,7 @@ def analyze_gitlab_group(server_url, private_token, group_name, output_file=None
     with open(output_file, 'w', newline='', encoding='utf-8') as csvfile:
         writer = csv.writer(csvfile)
         writer.writerow([
-            'Project Path', 'ID', 'Repo Size (KB)', 'Repo Size (MB)',
+            'Project Path', 'ID', 'Repo Size (B)', 'Repo Size (KB)',
             'Wiki Size (KB)', 'LFS Size (KB)', 'Storage Size (KB)', 
             'Last Activity', 'Web URL'
         ])
@@ -67,7 +67,7 @@ def analyze_gitlab_group(server_url, private_token, group_name, output_file=None
                 ])
                 
                 print(f"[{i}/{len(projects)}] {full_project.path_with_namespace.ljust(60)} "
-                      f"{stats.get('repository_size', 0)/1024:.2f} MB")
+                      f"{stats.get('repository_size', 0)/1024:.2f} KB")
                 
             except Exception as e:
                 print(f"[{i}/{len(projects)}] Error on {getattr(project, 'path_with_namespace', 'unknown')}: {str(e)}")
