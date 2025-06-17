@@ -1,3 +1,19 @@
+#!/usr/bin/env python3
+# gitlab-export.py
+#
+# Run to create a csv file with an export of the statistics for all projects in a provided group.
+# Requires some Required arguments:
+# --server: GitLab server URL
+# --token: Personal access token with api scope
+# --group: Gitlab group name/path
+# And optionals:
+# --output: Output filename
+# --sleep: Additonal Sleep seconds is default is insufficient
+
+# Usage:
+#     scripts/gitlab-export.py --server https://gitlab.com --token xxxx --group xxxx
+
+
 import gitlab
 import csv
 from datetime import datetime
