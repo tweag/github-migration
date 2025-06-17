@@ -38,7 +38,7 @@ def analyze_gitlab_group(server_url, private_token, group_name, output_file=None
     with open(output_file, 'w', newline='', encoding='utf-8') as csvfile:
         writer = csv.writer(csvfile)
         writer.writerow([
-            'Project Path', 'ID', 'Repo Size (B)', 'Repo Size (KB)',
+            'Project Name', 'Project Path', 'ID', 'Repo Size (B)', 'Repo Size (KB)',
             'Wiki Size (KB)', 'LFS Size (KB)', 'Storage Size (KB)', 
             'Last Activity', 'Web URL'
         ])
@@ -55,6 +55,7 @@ def analyze_gitlab_group(server_url, private_token, group_name, output_file=None
                 stats = full_project.statistics if hasattr(full_project, 'statistics') else {}
                 
                 writer.writerow([
+                    full_project.name,
                     full_project.path_with_namespace,
                     full_project.id,
                     stats.get('repository_size', 0),
