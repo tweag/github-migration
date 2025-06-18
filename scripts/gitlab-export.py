@@ -105,7 +105,7 @@ def analyze_gitlab_group(server_url, private_token, group_name, output_file=None
         writer = csv.writer(csvfile)
         writer.writerow([
             'Project Name', 'Project Path', 'ID', 'Size (B)', 'Size (KB)', 
-            'Last Active', 'Web URL'
+            'Last Active', 'Web URL', 'wiki_size (B)', 'package_size (B)', 'lfs_objects_size (B)', 'container_registry_size (B)'
         ])
         
         try:
@@ -132,7 +132,13 @@ def analyze_gitlab_group(server_url, private_token, group_name, output_file=None
                         size_kb,
                         f"{size_kb/1024:.2f}",
                         full_project.last_activity_at,
-                        full_project.web_url                    ])
+                        full_project.web_url,
+                        stats.get('wiki_size', 0),
+                        stats.get('packages_size', 0),            
+                        stats.get('lfs_objects_size', 0),   
+                        stats.get('container_registry_size', 0),   
+                        
+                        ])
                     
                     print(f"[{i}/{len(project_list)}] {full_project.path_with_namespace.ljust(60)} "
                           f"{size_kb/1024:.2f} KB | Remaining: {rate_limiter.rate_limit_remaining}")
