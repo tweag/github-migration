@@ -12,7 +12,13 @@ from collections import defaultdict
 from urllib.parse import urlparse
 
 import requests
-from utils import DEFAULT_TIMEOUT, assertGetenv, getLogger, ghRateLimitSleep, DEFAULT_ORG
+from utils import (
+    DEFAULT_ORG,
+    DEFAULT_TIMEOUT,
+    assertGetenv,
+    getLogger,
+    ghRateLimitSleep,
+)
 
 token = assertGetenv(
     "GH_SOURCE_PAT", "Provide a personal access token from the source GHES instance"

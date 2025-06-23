@@ -4,6 +4,7 @@ PyGithub
 hvac
 openpyxl
 pandas
+python-gitlab
 python_graphql_client
 pyyaml
 requests
