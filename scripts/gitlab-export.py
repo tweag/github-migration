@@ -56,7 +56,7 @@ def analyze_gitlab_group(  # noqa: C901
     if not output_file:
         timestamp = datetime.now().strftime("%Y%m%d_%H%M%S")
         output_file = (
-            f'gitlab_size_analysis_{group_name.replace("/", "_")}_{timestamp}.csv'
+            f'./data/gitlab_size_analysis_{group_name.replace("/", "_")}_{timestamp}.csv'
         )
 
     with open(output_file, "w", newline="", encoding="utf-8") as csvfile:
@@ -127,7 +127,7 @@ def analyze_gitlab_group(  # noqa: C901
                 )
                 continue
 
-    logger.info(f"\n✓ Analysis complete. Results saved to {output_file}")
+    logger.info(f"✓ Analysis complete. Results saved to {output_file}")
 
 
 if __name__ == "__main__":
