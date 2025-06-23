@@ -17,6 +17,9 @@ import csv
 from datetime import datetime
 
 import gitlab
+import utils
+
+logger = utils.getLogger()
 
 
 def get_project_size(gl, project_id):
@@ -26,7 +29,7 @@ def get_project_size(gl, project_id):
         if hasattr(project, "statistics") and project.statistics:
             return project.statistics.get("repository_size", 0)
     except Exception as e:
-        print(f"Error getting size for project {project_id}: {str(e)}")
+        logger.error(f"Error getting size for project {project_id}: {str(e)}")
     return 0
 
 
@@ -38,16 +41,16 @@ def analyze_gitlab_group(  # noqa: C901
 
     try:
         gl.auth()
-        print("✓ Connected to GitLab server")
+        logger.info("✓ Connected to GitLab server")
     except Exception as e:
-        print(f"✗ Connection failed: {e}")
+        logger.error(f"✗ Connection failed: {e}")
         return
 
     try:
         group = gl.groups.get(group_name)
-        print(f"✓ Found group: {group.full_path}")
+        logger.info(f"✓ Found group: {group.full_path}")
     except gitlab.exceptions.GitlabGetError:
-        print(f"✗ Group '{group_name}' not found")
+        logger.error(f"✗ Group '{group_name}' not found")
         return
 
     if not output_file:
@@ -80,7 +83,7 @@ def analyze_gitlab_group(  # noqa: C901
         projects = list(
             group.projects.list(iterator=True, include_subgroups=True, all=True)
         )
-        print(f"Found {len(projects)} projects. Starting analysis...")
+        logger.info(f"Found {len(projects)} projects. Starting analysis...")
 
         for i, project in enumerate(projects, 1):
             try:
@@ -113,18 +116,18 @@ def analyze_gitlab_group(  # noqa: C901
                     ]
                 )
 
-                print(
+                logger.info(
                     f"[{i}/{len(projects)}] {full_project.path_with_namespace.ljust(60)} "
                     f"{stats.get('repository_size', 0)/1024:.2f} KB"
                 )
 
             except Exception as e:
-                print(
+                logger.error(
                     f"[{i}/{len(projects)}] Error on {getattr(project, 'path_with_namespace', 'unknown')}: {str(e)}"
                 )
                 continue
 
-    print(f"\n✓ Analysis complete. Results saved to {output_file}")
+    logger.info(f"\n✓ Analysis complete. Results saved to {output_file}")
 
 
 if __name__ == "__main__":
