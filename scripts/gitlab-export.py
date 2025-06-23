@@ -30,7 +30,9 @@ def get_project_size(gl, project_id):
     return 0
 
 
-def analyze_gitlab_group(server_url, private_token, group_name, output_file=None):  # noqa: C901
+def analyze_gitlab_group(
+    server_url, private_token, group_name, output_file=None
+):  # noqa: C901
     """Analyze GitLab group using statistics endpoint for sizes"""
     gl = gitlab.Gitlab(server_url, private_token=private_token)
 
