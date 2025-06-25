@@ -2,7 +2,7 @@
 # env.sample
 #
 # Copy this to .env and customize it with real access tokens.
-# 
+#
 # Then source it before running commands in the scripts:
 #
 #    set -o allexport && source .env && set +o allexport
@@ -13,7 +13,7 @@
 # These rest of the scripts use the same conventions as [github/gh-gei](https://github.com/github/gh-gei) for GitHub tokens. These are:
 #
 #    GH_PAT         Personal access token for github.com (migration destination)
-#    GH_SOURCE_PAT  Personal access token for github.example.com (migration source) 
+#    GH_SOURCE_PAT  Personal access token for github.example.com (migration source)
 #
 # These tokens must have the scopes that are defined in the `github/gh-gei` documentation, see:
 #   https://docs.github.com/en/migrations/using-github-enterprise-importer/preparing-to-migrate-with-github-enterprise-importer/managing-access-for-github-enterprise-importer#required-scopes-for-personal-access-tokens
@@ -36,3 +36,6 @@ BUILDKITE_TOKEN=redacted
 # For testing, set this with scripts/getVaultToken.sh:
 #  export VAULT_TOKEN=$(scripts/getVaultToken.sh)
 #VAULT_TOKEN=redacted
+
+# Optional: if you want to use `scripts/gitlab-export.py` set this:
+GITLAB_TOKEN=redacted

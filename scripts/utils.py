@@ -32,9 +32,9 @@ GHEC_PREFIX = "example"
 GHEC_SANDBOX_ORG = "sb"
 GHES_API_URL = "https://github.example.com/api/v3"
 USER_SUFFIX = "example"
-ORGS='org1
+ORGS = """org1
 org2
-'
+"""
 
 # Thanks https://stackoverflow.com/a/19202904
 COMMENT_RE = re.compile(r"^\s*(#.*|)$")

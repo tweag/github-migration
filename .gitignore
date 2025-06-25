@@ -394,5 +394,8 @@ webhooksecrets.csv
 # Do not store user mappings file
 user_conflicts*
 
+# Ignore gitlab output files
+gitlab_size_analysis*.csv
+
 # Ignore archive files
 *.tar.gz
