@@ -26,6 +26,7 @@ jobs:
           sudo apt install --quiet shellcheck
           python -m pip install --upgrade pip
           pip install -r requirements.lock
+          cp env-sample .env
 
       - name: Run lint script
         run: scripts/lint.sh
