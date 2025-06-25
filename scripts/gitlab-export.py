@@ -31,29 +31,27 @@ def is_cicd_enabled(project):
         # Get the CI/CD settings for the project
         custom_path = project.ci_config_path
 
+        standard_paths = [".gitlab-ci.yml"]
 
-        standard_paths = [
-            '.gitlab-ci.yml'
-        ]
-        
         if custom_path is not None:
             standard_paths.append(custom_path)
-        
+
         default_branch = project.default_branch
-        
+
         for path in standard_paths:
             try:
                 project.files.get(file_path=path, ref=default_branch)
                 return (True, path)
             except gitlab.exceptions.GitlabGetError:
                 continue
-        
+
         # No CI config file found
         return (False, None)
-        
+
     except Exception as e:
-        print(f"Error checking CI/CD config for project {project.id}: {str(e)}")
+        logger.error(f"Error checking CI/CD config for project {project.id}: {str(e)}")
         return (False, None)
+
 
 def analyze_gitlab_group(  # noqa: C901
     server_url, private_token, group_name, output_file=None
@@ -77,9 +75,7 @@ def analyze_gitlab_group(  # noqa: C901
 
     if not output_file:
         timestamp = datetime.now().strftime("%Y%m%d_%H%M%S")
-        output_file = (
-            f'./data/gitlab_size_analysis_{group_name.replace("/", "_")}_{timestamp}.csv'
-        )
+        output_file = f'./data/gitlab_size_analysis_{group_name.replace("/", "_")}_{timestamp}.csv'
 
     with open(output_file, "w", newline="", encoding="utf-8") as csvfile:
         writer = csv.writer(csvfile)
@@ -100,7 +96,7 @@ def analyze_gitlab_group(  # noqa: C901
                 "lfs_objects_size (B)",
                 "container_registry_size (B)",
                 "CICD enabled",
-                "CICD file path"
+                "CICD file path",
             ]
         )
 
@@ -121,6 +117,7 @@ def analyze_gitlab_group(  # noqa: C901
                     else {}
                 )
 
+                (cicd_enabled, cicd_file_path) = is_cicd_enabled(full_project)
                 writer.writerow(
                     [
                         full_project.name,
@@ -137,8 +134,8 @@ def analyze_gitlab_group(  # noqa: C901
                         stats.get("packages_size", 0),
                         stats.get("lfs_objects_size", 0),
                         stats.get("container_registry_size", 0),
-                        is_cicd_enabled(full_project)[0],
-                        is_cicd_enabled(full_project)[1]
+                        cicd_enabled,
+                        cicd_file_path,
                     ]
                 )
 
