@@ -23,7 +23,7 @@ jobs:
 
       - name: Install dependencies
         run: |
-          apt install shellcheck
+          sudo apt install --quiet shellcheck
           python -m pip install --upgrade pip
           pip install -r requirements.lock
 
