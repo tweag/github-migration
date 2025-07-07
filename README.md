@@ -14,12 +14,12 @@ some custom tooling helps fill the gaps that both these tools leave in migrating
 
 ## Development
 
-To work on this app, you need a Macbook, Linux or Windows system.
+To work on this app, you need a macOS, Linux or Windows system.
 
 The scripts are Python 3 scripts, in the `scripts` directory. They require some environment variables to be set for 
 them to work, see each script for details.
 
-This file has some Git LFS files, see 
+This repository has some Git LFS files, see 
 [GitHub's documentation on working with large files](https://docs.github.com/en/repositories/working-with-files/managing-large-files/configuring-git-large-file-storage)
 for how to enable LFS on your workstation.
 
@@ -27,6 +27,17 @@ Copy the [`env-sample`](env-sample) file to `.env` and customize it with tokens 
 then source it with:
 
     set -o allexport && source .env && set +o allexport
+
+To develop the python scripts you will need Python 3.9+ installed.
+
+To install the dependencies, you can create a virtual environment and install the dependencies like this:
+```bash
+rm -rf .venv
+python3 -m venv .venv
+source .venv/bin/activate
+pip install --upgrade pip
+pip install -r requirements.lock
+```
 
 ### Git LFS
 
@@ -83,6 +94,8 @@ repoList file in `REPO_LIST`:
     while read slug; do scripts/patchBuildkitePipeline.sh <<<"$slug"; done < "$REPO_LIST"
 
 ### Requirements
+
+This uses pip to manage Python dependencies.
 
 -   **requirements.txt**
     All first level dependencies should be declared in `requirements.txt`.
