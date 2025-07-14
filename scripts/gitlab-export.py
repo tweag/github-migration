@@ -137,7 +137,7 @@ def analyze_gitlab_group(  # noqa: C901
                         stats.get("packages_size", 0),
                         stats.get("lfs_objects_size", 0),
                         stats.get("container_registry_size", 0),
-                        is_cicd_enabled(full_project)[0],
+                        is_cicd_enabled(full_project)[0] or full_project.auto_devops_enabled,
                         is_cicd_enabled(full_project)[1]
                     ]
                 )
